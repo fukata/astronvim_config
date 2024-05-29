@@ -34,5 +34,13 @@ elseif vim.fn.has("mac") == 1 then
   }
 end
 
+-- alias
+-- T -> Neotest run
+vim.cmd [[command! -nargs=* T Neotest run <args>]]
+-- To -> Neotest output
+vim.cmd [[command! -nargs=* To Neotest output <args>]]
+-- keymap for Neotest
+vim.api.nvim_set_keymap('n', '<S-T>', '<cmd>lua require("neotest").run.run()<CR>', { noremap = true, silent = true })
+
 require("lazy").setup { "AstroNvim/AstroNvim", version = "^4", import = "astronvim.plugins" }
 
