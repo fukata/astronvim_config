@@ -6,7 +6,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.opt.clipboard = 'unnamed,unnamedplus'
-if vim.fn.has("wsl") then
+if vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "clipboard-wsl",
     copy = {
@@ -16,6 +16,19 @@ if vim.fn.has("wsl") then
     paste = {
       ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
       ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))'
+    },
+    cache_enable = 0,
+  }
+elseif vim.fn.has("mac") == 1 then
+  vim.g.clipboard = {
+    name = "clipboard-mac",
+    copy = {
+      ["+"] = "pbcopy",
+      ["*"] = "pbcopy"
+    },
+    paste = {
+      ["+"] = "pbpaste",
+      ["*"] = "pbpaste"
     },
     cache_enable = 0,
   }
