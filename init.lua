@@ -7,18 +7,18 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.opt.clipboard = 'unnamed,unnamedplus'
 if vim.fn.has("wsl") == 1 then
-  --vim.g.clipboard = {
-  --  name = "clipboard-wsl",
-  --  copy = {
-  --    ["+"] = "clip.exe",
-  --    ["*"] = "clip.exe"
-  --  },
-  --  paste = {
-  --    ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-  --    ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))'
-  --  },
-  --  cache_enable = 0,
-  --}
+  vim.g.clipboard = {
+    name = "clipboard-wsl",
+    copy = {
+      ["+"] = "xsel --clipboard --input",
+      ["*"] = "xsel --clipboard --input"
+    },
+    paste = {
+      ["+"] = "xsel --clipboard --output",
+      ["*"] = "xsel --clipboard --output"
+    },
+    cache_enable = 0,
+  }
 elseif vim.fn.has("mac") == 1 then
   vim.g.clipboard = {
     name = "clipboard-mac",
