@@ -5,6 +5,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- encoding
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
+vim.opt.fileencodings = "utf-8"
+
 vim.opt.clipboard = 'unnamed,unnamedplus'
 if vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
